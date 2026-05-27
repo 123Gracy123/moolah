@@ -2,9 +2,9 @@ Here is the updated **README.md** file for **BudgetGuard**. It has been updated 
 
 ---
 
-# BudgetGuard
+# Moolah
 
-BudgetGuard is a personal finance companion Chrome Extension built using the Manifest V3 API. It acts as an interactive budget manager and behavioral intervention tool, dynamically restricting access to configured shopping platforms, disabling checkout actions, and rendering real-time purchase impact simulations directly next to e-commerce checkout elements.
+Moolah is a personal finance companion Chrome Extension built using the Manifest V3 API. It acts as an interactive budget manager and behavioral intervention tool, dynamically restricting access to configured shopping platforms, disabling checkout actions, and rendering real-time purchase impact simulations directly next to e-commerce checkout elements.
 
 ---
 
@@ -55,7 +55,7 @@ To install and run this extension locally in your Google Chrome browser:
 3. **Enable Developer Mode**: Turn on the **Developer mode** toggle switch located in the upper-right corner of the Extensions page.
 4. **Load the Unpacked Directory**: Click the **Load unpacked** button in the upper-left area of the page.
 5. **Select Folder**: In the directory browser window, navigate to and select the `budgetguard` folder containing `manifest.json`.
-6. **Verify Startup**: Click the puzzle piece icon in your extensions toolbar and pin **BudgetGuard**. Click it to configure the initial settings.
+6. **Verify Startup**: Click the puzzle piece icon in your extensions toolbar and pin **Moolah**. Click it to configure the initial settings.
 
 ---
 
@@ -66,12 +66,12 @@ Use the following methods to safely evaluate all features on live websites witho
 ### Phase 1: Interactive Tooltip Simulations (With an Active Budget)
 1. Go to any product listing page on a major e-commerce platform (e.g., [Amazon.com](https://www.amazon.com) or [eBay.com](https://www.ebay.com)).
 2. Hover your mouse over the primary **Add to Cart** or **Buy Now** button.
-3. Observe that the **BudgetGuard Simulator** tooltip renders, centered above or below the button without clipping outside the browser margins.
+3. Observe that the **Moolah Simulator** tooltip renders, centered above or below the button without clipping outside the browser margins.
 4. Modify the value inside the **Simulate Price ($)** text field. Verify that the current vs. projected tables and dual-color progress bar adjust immediately.
 5. Set the simulated price to a value larger than your total budget and verify that the inline orange warning banner appears.
 
 ### Phase 2: Interception, Password Overrides, & Purchase Blocking (With a Depleted Budget)
-1. Open the BudgetGuard dashboard by clicking the `↗` icon in the popup.
+1. Open the Moolah dashboard by clicking the `↗` icon in the popup.
 2. Set your **🎉 Leisure Spend** allocation to `$0` (or manually log a transaction that exceeds your Leisure limit).
 3. Try to visit a restricted website on your block list, such as [etsy.com](https://www.etsy.com) or [nike.com](https://www.nike.com) [5].
 4. Verify that you are immediately redirected to `pages/block.html`.
@@ -103,7 +103,7 @@ document.body.innerHTML = `
 detectPurchaseConfirmation();
 ```
 
-4. Confirm that the BudgetGuard confirmation logger slides into view with `$124.99` pre-populated in the entry field. Select a category, save the entry, and verify that the deduction is saved in your dashboard transaction log.
+4. Confirm that the Moolah confirmation logger slides into view with `$124.99` pre-populated in the entry field. Select a category, save the entry, and verify that the deduction is saved in your dashboard transaction log.
 
 ---
 
