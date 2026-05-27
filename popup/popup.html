@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BudgetGuard Popup</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <header class="popup-header">
+      <div class="logo">
+        <span class="logo-emoji">🛡️</span>
+        <h2>BudgetGuard</h2>
+      </div>
+      <button id="full-dashboard-btn" class="dash-btn" title="Open Full Dashboard">↗</button>
+    </header>
+
+    <nav class="popup-nav">
+      <button class="nav-tab active" data-tab="budget-tab">📊 Budget</button>
+      <button class="nav-tab" data-tab="profile-tab">👤 Profile</button>
+      <button class="nav-tab" data-tab="insights-tab">📈 Insights</button>
+    </nav>
+
+    <main class="popup-main">
+      <section id="budget-tab" class="tab-panel">
+        <div id="popup-onboarding-prompt" class="onboarding-prompt hidden">
+          <h3>🛡️ Start Protecting Your Wallet!</h3>
+          <p>Setup your monthly allocations and backup password first.</p>
+          <button id="popup-ob-btn" class="btn btn-primary">Run Onboarding Setup</button>
+        </div>
+        
+        <div id="popup-budget-list"></div>
+
+        <div class="summary-card" id="popup-summary-card">
+          <div class="summary-item">
+            <span>Total Budget</span>
+            <strong id="pop-total-alloc">$0.00</strong>
+          </div>
+          <div class="summary-item">
+            <span>Total Spent</span>
+            <strong id="pop-total-spent" class="text-red">$0.00</strong>
+          </div>
+          <div class="summary-item">
+            <span>Total Remaining</span>
+            <strong id="pop-total-rem" class="text-green">$0.00</strong>
+          </div>
+        </div>
+      </section>
+
+      <section id="profile-tab" class="tab-panel hidden">
+        <div class="profile-avatar-select">
+          <div class="current-avatar-circle" id="profile-current-avatar">😊</div>
+          <div class="avatar-grid">
+            <span class="avatar-opt">😊</span>
+            <span class="avatar-opt">😎</span>
+            <span class="avatar-opt">🐱</span>
+            <span class="avatar-opt">🦊</span>
+            <span class="avatar-opt">🚀</span>
+            <span class="avatar-opt">🔒</span>
+            <span class="avatar-opt">🦁</span>
+            <span class="avatar-opt">🍕</span>
+          </div>
+        </div>
+
+        <div class="popup-form">
+          <div class="p-form-group">
+            <label>First Name</label>
+            <input type="text" id="prof-first-name" placeholder="John" />
+          </div>
+          <div class="p-form-group">
+            <label>Last Name</label>
+            <input type="text" id="prof-last-name" placeholder="Doe" />
+          </div>
+          <div class="p-form-group">
+            <label>Birthday & Calculated Age</label>
+            <div style="display:flex; gap:8px;">
+              <input type="date" id="prof-birthday" style="flex:1;" />
+              <span id="prof-age-display" class="age-badge">Age: -</span>
+            </div>
+          </div>
+          <div class="p-form-group">
+            <label>Monthly Income ($)</label>
+            <input type="number" id="prof-income" placeholder="5000" />
+          </div>
+          <div class="p-form-group">
+            <label>Bypass Override Password</label>
+            <input type="password" id="prof-password" placeholder="Set Override Password" />
+            <span class="warn-msg">⚠️ Override password disables site blocking. Use only in emergencies.</span>
+          </div>
+          <button id="prof-save-btn" class="btn btn-primary w-100" style="margin-top:12px;">Save Profile</button>
+        </div>
+      </section>
+
+      <section id="insights-tab" class="tab-panel hidden">
+        <div class="tag-box text-center">
+          <span class="label">Weekly Behavior Status</span>
+          <div class="metric-big mt-4" id="pop-behavior-tag" style="color: #22c55e;">Controlled Spender 🟢</div>
+        </div>
+
+        <div class="stats-row mt-12">
+          <div class="stat-card">
+            <span>Blocks (This Week)</span>
+            <strong id="pop-stat-blocked">0</strong>
+          </div>
+          <div class="stat-card">
+            <span>Overrides Used</span>
+            <strong id="pop-stat-overrides">0</strong>
+          </div>
+        </div>
+
+        <div class="quick-history-card mt-12">
+          <h4>🚨 Smart Alerts Summary</h4>
+          <div class="popup-alert-list" id="pop-alerts-list">
+            <p class="empty-state">No alerts triggered yet!</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="../utils/storage.js"></script>
+  <script src="../utils/budgetEngine.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

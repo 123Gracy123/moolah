@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BudgetGuard Full Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <aside class="sidebar">
+      <div class="logo">
+        <span class="logo-emoji">🛡️</span>
+        <h2>BudgetGuard</h2>
+      </div>
+      <nav>
+        <button class="nav-item active" data-target="budget-section">📊 Budget Manager</button>
+        <button class="nav-item" data-target="insights-section">📈 Spending Patterns</button>
+        <button class="nav-item" data-target="settings-section">⚙️ Block Settings</button>
+      </nav>
+      <div class="user-pill" id="user-pill">
+        <span class="user-avatar" id="sidebar-avatar">😊</span>
+        <span class="user-name" id="sidebar-name">New User</span>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <section id="onboarding-section" class="section onboarding-card hidden">
+        <h1>🛡️ Welcome to BudgetGuard</h1>
+        <p class="subtitle">Complete your initial parameters to enable budget controls.</p>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" id="ob-first-name" placeholder="John" />
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" id="ob-last-name" placeholder="Doe" />
+          </div>
+          <div class="form-group">
+            <label>Birthday</label>
+            <input type="date" id="ob-birthday" />
+          </div>
+          <div class="form-group">
+            <label>Monthly Income ($)</label>
+            <input type="number" id="ob-income" placeholder="5000" />
+          </div>
+          <div class="form-group">
+            <label>Avatar</label>
+            <select id="ob-avatar">
+              <option value="😊">😊 Friendly</option>
+              <option value="😎">😎 Cool</option>
+              <option value="🐱">🐱 Cat</option>
+              <option value="🦊">🦊 Fox</option>
+              <option value="🚀">🚀 Spaceship</option>
+              <option value="🔒">🔒 Secure</option>
+              <option value="🦁">🦁 Lion</option>
+              <option value="🍕">🍕 Pizza Lover</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Emergency Bypass Password</label>
+            <input type="password" id="ob-password" placeholder="Bypass password" />
+            <span class="hint">⚠️ Required to bypass site blocking when limits are met.</span>
+          </div>
+        </div>
+
+        <h3 style="margin-top:24px;">Monthly Category Allowances</h3>
+        <div class="ob-budget-grid">
+          <div class="budget-input-group">
+            <span>🏠 Home Expenses</span>
+            <input type="number" id="ob-bud-home" value="1500" />
+          </div>
+          <div class="budget-input-group">
+            <span>🎉 Leisure Spend</span>
+            <input type="number" id="ob-bud-leisure" value="500" />
+          </div>
+          <div class="budget-input-group">
+            <span>💰 Savings</span>
+            <input type="number" id="ob-bud-savings" value="1000" />
+          </div>
+          <div class="budget-input-group">
+            <span>🚗 Transportation</span>
+            <input type="number" id="ob-bud-trans" value="300" />
+          </div>
+        </div>
+
+        <button id="ob-submit-btn" class="btn btn-primary">Complete Setup & Activate</button>
+      </section>
+
+      <section id="budget-section" class="section">
+        <div class="header-row">
+          <h1>Budget Manager Spreadsheet</h1>
+          <span class="date-badge" id="current-month-badge">Month</span>
+        </div>
+
+        <div class="table-container">
+          <table class="sheets-table">
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Allocated ($)</th>
+                <th>Spent ($)</th>
+                <th>Remaining ($)</th>
+                <th>Progress Status</th>
+                <th>% Used</th>
+              </tr>
+            </thead>
+            <tbody id="sheets-tbody"></tbody>
+            <tfoot>
+              <tr id="sheets-tfoot" class="total-row"></tr>
+            </tfoot>
+          </table>
+        </div>
+
+        <div class="dashboard-grid mt-24">
+          <div class="card card-half">
+            <h3>📜 Transaction History Ledger</h3>
+            <div class="transaction-list" id="transaction-list">
+              <p class="empty-state">No transactions recorded yet.</p>
+            </div>
+          </div>
+          <div class="card card-half">
+            <h3>✍️ Manually Record Spending</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Amount ($)</label>
+                <input type="number" step="0.01" id="man-amount" placeholder="0.00" />
+              </div>
+              <div class="form-group">
+                <label>Merchant / Site</label>
+                <input type="text" id="man-merchant" placeholder="Store Name" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Category</label>
+                <select id="man-category">
+                  <option value="home">🏠 Home Expenses</option>
+                  <option value="leisure">🎉 Leisure</option>
+                  <option value="savings">💰 Savings</option>
+                  <option value="transportation">🚗 Transportation</option>
+                </select>
+              </div>
+              <div class="form-group" style="display:flex; align-items:flex-end;">
+                <button id="man-save-btn" class="btn btn-primary w-100">Log Transaction</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="insights-section" class="section hidden">
+        <h1>Spending Behavior Insights</h1>
+        <p class="subtitle">Weekly analytics of online navigation patterns and limits reached.</p>
+
+        <div class="dashboard-grid">
+          <div class="card flex-center text-center">
+            <h3>Behavior Tag Profile</h3>
+            <span class="metric-big mt-12" id="insight-tag">Controlled Spender 🟢</span>
+            <p class="hint mt-12">Assessed using website shopping frequencies, blocks bypassed, and overall budget statuses.</p>
+          </div>
+          <div class="card">
+            <h3>Weekly Metrics Overview</h3>
+            <div class="metric-row mt-12">
+              <div class="metric-col">
+                <span class="metric-label">Blocked Navigations</span>
+                <span class="metric-val text-red" id="insight-blocked">0</span>
+              </div>
+              <div class="metric-col">
+                <span class="metric-label">Password Overrides</span>
+                <span class="metric-val text-amber" id="insight-overrides">0</span>
+              </div>
+            </div>
+            <div class="daily-projection mt-12" id="insight-projection">
+              Calculating allocation projection metrics...
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-grid mt-24">
+          <div class="card card-half">
+            <h3>🕒 Peak Hourly Shopping Activity</h3>
+            <canvas id="hoursChart" width="400" height="200"></canvas>
+          </div>
+          <div class="card card-half">
+            <h3>🛍️ Top Shopping Site Connections</h3>
+            <ul class="top-sites-list" id="insight-top-sites">
+              <li class="empty-state">No tracked shopping site visits.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card mt-24">
+          <h3>🚨 Warnings and Alert Log</h3>
+          <div class="alert-history" id="alerts-history-list">
+            <p class="empty-state">No notifications logged yet.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="settings-section" class="section hidden">
+        <h1>Configured Blocking Filters</h1>
+        <p class="subtitle">Edit list parameters and toggles matching standard leisure platforms.</p>
+
+        <div class="card">
+          <h3>Add Domain Exception</h3>
+          <div class="add-site-form mt-12">
+            <input type="text" id="new-site-domain" placeholder="domain.com (e.g. nike.com)" />
+            <button id="add-site-btn" class="btn btn-primary">Save Filter</button>
+          </div>
+        </div>
+
+        <div class="card mt-24">
+          <h3>Active Filters</h3>
+          <div class="domains-grid" id="blocked-domains-grid"></div>
+        </div>
+
+        <div class="card mt-24">
+          <h3>Guard Action Controls</h3>
+          <div class="toggle-group mt-12">
+            <label class="switch-container">
+              <input type="checkbox" id="toggle-blocking" checked>
+              <span class="switch-label"><strong>Enable Dynamic Blocker Settings</strong> (Intercepts page validation mechanisms and disables buy-flows)</span>
+            </label>
+          </div>
+          <div class="toggle-group mt-12">
+            <label class="switch-container">
+              <input type="checkbox" id="toggle-warnings" checked>
+              <span class="switch-label"><strong>Enable Warning Prompts</strong> (Dispatches system alerts when category metrics hit 50% and 80%)</span>
+            </label>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="../utils/storage.js"></script>
+  <script src="../utils/budgetEngine.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>

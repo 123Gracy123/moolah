@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Budget Limit Exceeded | BudgetGuard</title>
+  <style>
+    body {
+      background-color: #0f172a;
+      color: white;
+      font-family: system-ui, -apple-system, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .container {
+      text-align: center;
+      max-width: 500px;
+      background-color: #1e293b;
+      border: 1px solid #334155;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    h1 {
+      color: #ef4444;
+      font-size: 32px;
+      margin-top: 0;
+    }
+    p {
+      color: #94a3b8;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    .budget-tag {
+      background-color: #ef4444;
+      color: white;
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 20px;
+      display: inline-block;
+      margin: 16px 0;
+      font-size: 15px;
+    }
+    .button-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    button, a.btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-decoration: none;
+    }
+    .btn-dash {
+      background-color: #3b82f6;
+      color: white;
+    }
+    .btn-dash:hover { background-color: #2563eb; }
+    .btn-bypass {
+      background-color: #334155;
+      color: white;
+    }
+    .btn-bypass:hover { background-color: #475569; }
+    .bypass-form {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid #334155;
+    }
+    input[type="password"] {
+      background-color: #0f172a;
+      border: 1px solid #334155;
+      color: white;
+      padding: 10px;
+      border-radius: 6px;
+      width: 200px;
+      font-size: 14px;
+      outline: none;
+    }
+    input[type="password"]:focus {
+      border-color: #3b82f6;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <span style="font-size: 64px;">🛡️</span>
+    <h1>Access Blocked</h1>
+    <p>Your weekly shopping behavioral filters have restricted access to this page because your <strong>Leisure</strong> budget is depleted.</p>
+    
+    <div class="budget-tag" id="leisure-balance">
+      Leisure Remaining: $0.00
+    </div>
+
+    <div class="button-group">
+      <a class="btn btn-dash" id="view-dashboard-btn" href="#">Open BudgetGuard Dashboard</a>
+      <button class="btn btn-bypass" id="override-toggle-btn">Emergency Password Override</button>
+    </div>
+
+    <div id="bypass-form-container" class="bypass-form" style="display: none;">
+      <input type="password" id="override-password" placeholder="Enter override password" />
+      <button class="btn btn-dash" id="submit-override-btn" style="padding: 10px 20px; margin-left:8px;">Unlock Site</button>
+      <p id="error-msg" style="color:#ef4444; font-size:12px; margin-top:8px; display:none;">Incorrect password. Override attempt logged.</p>
+    </div>
+  </div>
+
+  <script src="../utils/storage.js"></script>
+  <script src="block.js"></script>
+</body>
+</html>

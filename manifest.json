@@ -1,0 +1,43 @@
+{
+    "manifest_version": 3,
+    "name": "BudgetGuard",
+    "version": "1.0.0",
+    "description": "Keep personal spending on track using custom website blocking rules, purchase validation controls, and daily spending analytics.",
+    "permissions": [
+      "storage",
+      "tabs",
+      "webNavigation",
+      "notifications",
+      "activeTab",
+      "scripting"
+    ],
+    "host_permissions": [
+      "http://*/*",
+      "https://*/*"
+    ],
+    "background": {
+      "service_worker": "background.js",
+      "type": "module"
+    },
+    "action": {
+      "default_popup": "popup/popup.html"
+    },
+    "content_scripts": [
+      {
+        "matches": ["http://*/*", "https://*/*"],
+        "js": ["content/content.js"],
+        "run_at": "document_end"
+      }
+    ],
+    "web_accessible_resources": [
+      {
+        "resources": [
+          "pages/block.html",
+          "pages/dashboard.html",
+          "utils/storage.js",
+          "utils/budgetEngine.js"
+        ],
+        "matches": ["<all_urls>"]
+      }
+    ]
+  }
