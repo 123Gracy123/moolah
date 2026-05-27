@@ -1,7 +1,3 @@
-Here is the updated **README.md** file for **BudgetGuard**. It has been updated to include the new **Spreadsheet Simulator Tooltip** under the capabilities, architecture, and testing guides.
-
----
-
 # Moolah
 
 Moolah is a personal finance companion Chrome Extension built using the Manifest V3 API. It acts as an interactive budget manager and behavioral intervention tool, dynamically restricting access to configured shopping platforms, disabling checkout actions, and rendering real-time purchase impact simulations directly next to e-commerce checkout elements.
