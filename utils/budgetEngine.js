@@ -71,7 +71,7 @@
   
           chrome.runtime.sendMessage({
             type: "SHOW_NOTIFICATION",
-            title: "BudgetGuard Status Update",
+            title: "Moolah Status Update",
             message: alertMessage
           });
         }

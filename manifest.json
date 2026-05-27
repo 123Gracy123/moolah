@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "BudgetGuard",
+    "name": "Moolah",
     "version": "1.0.0",
     "description": "Keep personal spending on track using custom website blocking rules, purchase validation controls, and daily spending analytics.",
     "permissions": [

@@ -40,7 +40,7 @@ function showTopBanner() {
   banner.id = 'budgetguard-block-banner';
   banner.innerHTML = `
     <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
-      <span>🔒 <strong>BudgetGuard:</strong> Leisure budget depleted ($${(budgetState.budget.categories.leisure.allocated - budgetState.budget.categories.leisure.spent).toFixed(2)} remaining). Purchases blocked.</span>
+      <span>🔒 <strong>Moolah🐄:</strong> Leisure budget depleted ($${(budgetState.budget.categories.leisure.allocated - budgetState.budget.categories.leisure.spent).toFixed(2)} remaining). Purchases blocked.</span>
       <button id="bg-close-banner" style="background: none; border: none; color: white; cursor: pointer; font-weight: bold; font-size: 14px; margin-left: 10px;">✕</button>
     </div>
   `;
@@ -94,7 +94,7 @@ function applyPurchaseBlocking() {
         el.style.pointerEvents = 'none';
       }
 
-      el.setAttribute('title', 'Budget limit reached. Visit BudgetGuard to review.');
+      el.setAttribute('title', 'Budget limit reached. Visit Moolah to review.');
       
       el.addEventListener('click', (e) => {
         e.preventDefault();
@@ -103,7 +103,7 @@ function applyPurchaseBlocking() {
         chrome.runtime.sendMessage({
           type: "SHOW_NOTIFICATION",
           title: "Purchase Blocked 🔒",
-          message: "Your BudgetGuard Leisure budget has been fully spent. Purchase buttons are locked!"
+          message: "Your Moolah Leisure budget has been fully spent. Purchase buttons are locked!"
         });
       }, true);
     }
@@ -155,7 +155,7 @@ function showPurchaseLoggerWidget(detectedAmount, merchant) {
   widget.innerHTML = `
     <div style="background-color: #0f172a; border-radius: 12px; border: 2px solid #3b82f6; padding: 16px; width: 320px; color: white; font-family: system-ui, -apple-system, sans-serif; box-shadow: 0 10px 25px rgba(0,0,0,0.3);">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-        <span style="font-weight: bold; font-size: 16px; display: flex; align-items: center; gap: 6px;">🎉 BudgetGuard Detected!</span>
+        <span style="font-weight: bold; font-size: 16px; display: flex; align-items: center; gap: 6px;">🎉 Moolah Detected!</span>
         <button id="bg-widget-close" style="background:none; border:none; color:#94a3b8; cursor:pointer; font-size: 16px;">✕</button>
       </div>
       <p style="margin: 0 0 12px 0; font-size: 13px; color: #94a3b8;">We noticed a purchase on ${merchant}. Let's track it.</p>
